@@ -1,20 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import { graphql, useStaticQuery, Link } from "gatsby";
 import styled from "styled-components";
 import Img from "gatsby-image";
 import PropTypes from "prop-types";
-import { setFlex, setColor } from "../Style";
+import { FaBars } from "react-icons/fa";
+import { setColor, media } from "../Style";
+import Links from "./constants/Links";
 
 // eslint-disable-next-line react/prop-types
 export const PureNavbar = ({ data }) => {
-  // Add grid
-  // flexbox
-  // Add a Logo
-  // use React State Hooks to create responsive Navbar
-  // import FaBars
-  // Create Links Constants
-  //
-  console.log(data);
+  const [isOpen, setNav] = useState(false);
+  const toggleNav = () => {
+    setNav(isOpen => !isOpen);
+  };
 
   return (
     <Container>
@@ -24,6 +22,18 @@ export const PureNavbar = ({ data }) => {
           alt="Chance im Konflikt Logo"
         />
       </Logo>
+      <MobileMenu type="button" onClick={toggleNav}>
+        <FaBars size={35} />
+      </MobileMenu>
+      <StyledMenu className={isOpen ? `show` : `hide`}>
+        {Links.map(item => {
+          return (
+            <MenuItem key={item.text}>
+              <Link to={item.path}>{item.text}</Link>
+            </MenuItem>
+          );
+        })}
+      </StyledMenu>
     </Container>
   );
 };
@@ -70,8 +80,49 @@ const Container = styled.header`
   box-shadow: 5px 3px 5px 0.5px rgba(0, 0, 0, 0.25);
   margin: 0 0 2vh 0;
   padding: 0 2vw 0 2vw;
+  .show {
+    height: 100vh !important;
+    transition: all 0.3s linear;
+  }
+
+  .hide {
+    display: none;
+    transition: all 0.3 linear;
+  }
 `;
 
 const Logo = styled.div``;
+
+const MobileMenu = styled.button`
+  background-color: ${setColor.mainWhite};
+  border: none;
+  outline: none;
+  order: 99;
+  cursor: pointer;
+  ${media.tablet`display:none;`};
+`;
+
+const StyledMenu = styled.ul`
+  display: flex;
+  list-style: none;
+  margin: 3rem 0 0 0;
+  align-items: center;
+  padding: 0;
+  justify-content: flex-start;
+  flex: 4;
+  font-weight: 500;
+  flex-direction: column;
+  height: 0;
+  overflow: hidden;
+  transition: all 0.3s linear;
+  ${media.tablet`
+	flex-direction:row;
+	height: auto;
+	margin: 0 0 0 0;
+	`};
+`;
+export const MenuItem = styled.li`
+  padding: 1rem 2rem;
+`;
 
 export default Navbar;
