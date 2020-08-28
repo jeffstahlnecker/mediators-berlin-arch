@@ -11,6 +11,7 @@ import Links from "./constants/Links";
 export const PureNavbar = ({ data }) => {
   const [isOpen, setNav] = useState(false);
   const toggleNav = () => {
+    // eslint-disable-next-line no-shadow
     setNav(isOpen => !isOpen);
   };
 
@@ -22,7 +23,7 @@ export const PureNavbar = ({ data }) => {
           alt="Chance im Konflikt Logo"
         />
       </Logo>
-      <MobileMenu type="button" onClick={toggleNav}>
+      <MobileMenu type="button" onClick={toggleNav} aria-label="Mobile Menu">
         <FaBars size={35} />
       </MobileMenu>
       <StyledMenu className={isOpen ? `show` : `hide`}>
@@ -54,6 +55,7 @@ export const Navbar = () => {
 };
 
 PureNavbar.propTypes = {
+  // eslint-disable-next-line react/require-default-props
   data: PropTypes.shape({
     file: PropTypes.shape({
       childImageSharp: PropTypes.shape({
