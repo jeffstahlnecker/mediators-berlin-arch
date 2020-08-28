@@ -1,4 +1,4 @@
-import { createGlobalStyle } from "styled-components"
+import { createGlobalStyle } from "styled-components";
 
 const Globals = createGlobalStyle`
   * {
@@ -11,6 +11,6 @@ const Globals = createGlobalStyle`
     -ms-text-size-adjust: 100%;
     -webkit-text-size-adjust: 100%;
   }
-`
+`;
 
-export default Globals
+export default Globals;
