@@ -1,15 +1,12 @@
 import { css } from "styled-components";
 
 export const setColor = {
-  primaryColor: "#af9a7d",
-  secondaryColor: "#00FFd9",
+  primaryColor: "#4BD6AB",
+  secondaryColor: "#90dec6",
   mainWhite: "#fff",
   mainBlack: "#333",
   mainGrey: "#686868",
   lightGrey: "#ebeff2",
-  navbar: "#050319",
-  author: "rgba(0, 0, 0, 0.84)",
-  date: "rgba(0, 0, 0, 0.54)",
 };
 
 export const setFont = {

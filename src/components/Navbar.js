@@ -86,6 +86,7 @@ const Container = styled.header`
   box-shadow: 0px 3px 7px 0.5px rgba(0, 0, 0, 0.25);
   margin: 0 0 2vh 0;
   padding: 0 2vw 0 2vw;
+  z-index: 1;
   .show {
     height: 100vh !important;
     transition: all 0.3s linear;
