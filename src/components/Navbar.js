@@ -117,6 +117,9 @@ const Fixed = styled.div`
   width: 100vw;
   padding: 1vh 2vw 1vh 2vw;
   align-items: center;
+  ${media.tablet`
+  top: initial;
+  `};
 `;
 
 const Logo = styled.div``;
