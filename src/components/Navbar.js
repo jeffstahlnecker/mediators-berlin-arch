@@ -75,6 +75,7 @@ const Container = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  align-content: space-between;
   background-color: ${setColor.mainWhite};
   min-height: 8vh;
   box-shadow: 0px 3px 7px 0.5px rgba(0, 0, 0, 0.25);
@@ -91,6 +92,10 @@ const Container = styled.header`
     ${media.tablet`
 	    display: flex;
 	`};
+  }
+  a {
+    text-decoration: none;
+    color: ${setColor.mainBlack};
   }
 `;
 
@@ -122,6 +127,7 @@ const StyledMenu = styled.ul`
 	flex-direction:row;
 	height: auto;
 	margin: 0 0 0 0;
+	justify-content: flex-end;
 	`};
 `;
 export const MenuItem = styled.li`
