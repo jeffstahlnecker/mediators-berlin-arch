@@ -7,7 +7,6 @@ import { FaBars } from "react-icons/fa";
 import { setColor, media } from "../Style";
 import Links from "./constants/Links";
 
-// eslint-disable-next-line react/prop-types
 export const PureNavbar = ({ data }) => {
   const [isOpen, setNav] = useState(false);
   const toggleNav = () => {
@@ -55,7 +54,6 @@ export const Navbar = () => {
 };
 
 PureNavbar.propTypes = {
-  // eslint-disable-next-line react/require-default-props
   data: PropTypes.shape({
     file: PropTypes.shape({
       childImageSharp: PropTypes.shape({

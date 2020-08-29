@@ -23,6 +23,7 @@
     "import/no-named-as-default": 0,
     "react/jsx-props-no-spreading": "off",
     "no-shadow": "off",
+    "react/require-default-props": "off",
     "react/jsx-filename-extension": [
       1,
       {
