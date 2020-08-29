@@ -16,15 +16,17 @@ export const PureNavbar = ({ data }) => {
 
   return (
     <Container>
-      <Logo>
-        <Img
-          fixed={data.file.childImageSharp.fixed}
-          alt="Chance im Konflikt Logo"
-        />
-      </Logo>
-      <MobileMenu type="button" onClick={toggleNav} aria-label="Mobile Menu">
-        <FaBars size={35} />
-      </MobileMenu>
+      <Fixed>
+        <Logo>
+          <Img
+            fixed={data.file.childImageSharp.fixed}
+            alt="Chance im Konflikt Logo"
+          />
+        </Logo>
+        <MobileMenu type="button" onClick={toggleNav} aria-label="Mobile Menu">
+          <FaBars size={35} />
+        </MobileMenu>
+      </Fixed>
       <StyledMenu className={isOpen ? `show` : `hide`}>
         {Links.map(item => {
           return (
@@ -73,6 +75,9 @@ PureNavbar.propTypes = {
 
 const Container = styled.header`
   display: flex;
+  position: fixed;
+  top: 0;
+  width: 100vw;
   justify-content: space-between;
   align-items: center;
   align-content: space-between;
@@ -97,6 +102,21 @@ const Container = styled.header`
     text-decoration: none;
     color: ${setColor.mainBlack};
   }
+  a:hover {
+    color: ${setColor.secondaryColor};
+  }
+`;
+
+const Fixed = styled.div`
+  display: flex;
+  position: fixed;
+  top: 0;
+  flex-direction: row;
+  align-content: space-between;
+  justify-content: space-between;
+  width: 100vw;
+  padding: 1vh 2vw 1vh 2vw;
+  align-items: center;
 `;
 
 const Logo = styled.div``;
@@ -120,7 +140,6 @@ const StyledMenu = styled.ul`
   flex: 4;
   font-weight: 500;
   flex-direction: column;
-  height: 0;
   overflow: hidden;
   transition: all 0.3s linear;
   ${media.tablet`
