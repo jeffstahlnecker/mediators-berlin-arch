@@ -155,6 +155,7 @@ const StyledMenu = styled.ul`
 `;
 export const MenuItem = styled.li`
   padding: 1rem 2rem;
+  z-index: 2;
 `;
 
 export default Navbar;
