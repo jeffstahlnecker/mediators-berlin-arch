@@ -7,7 +7,6 @@ import { FaBars } from "react-icons/fa";
 import { setColor, media } from "../Style";
 import Links from "./constants/Links";
 
-// eslint-disable-next-line react/prop-types
 export const PureNavbar = ({ data }) => {
   const [isOpen, setNav] = useState(false);
   const toggleNav = () => {
@@ -17,15 +16,17 @@ export const PureNavbar = ({ data }) => {
 
   return (
     <Container>
-      <Logo>
-        <Img
-          fixed={data.file.childImageSharp.fixed}
-          alt="Chance im Konflikt Logo"
-        />
-      </Logo>
-      <MobileMenu type="button" onClick={toggleNav} aria-label="Mobile Menu">
-        <FaBars size={35} />
-      </MobileMenu>
+      <Fixed>
+        <Logo>
+          <Img
+            fixed={data.file.childImageSharp.fixed}
+            alt="Chance im Konflikt Logo"
+          />
+        </Logo>
+        <MobileMenu type="button" onClick={toggleNav} aria-label="Mobile Menu">
+          <FaBars size={35} />
+        </MobileMenu>
+      </Fixed>
       <StyledMenu className={isOpen ? `show` : `hide`}>
         {Links.map(item => {
           return (
@@ -55,7 +56,6 @@ export const Navbar = () => {
 };
 
 PureNavbar.propTypes = {
-  // eslint-disable-next-line react/require-default-props
   data: PropTypes.shape({
     file: PropTypes.shape({
       childImageSharp: PropTypes.shape({
@@ -75,13 +75,18 @@ PureNavbar.propTypes = {
 
 const Container = styled.header`
   display: flex;
+  position: fixed;
+  top: 0;
+  width: 100vw;
   justify-content: space-between;
   align-items: center;
+  align-content: space-between;
   background-color: ${setColor.mainWhite};
   min-height: 8vh;
-  box-shadow: 5px 3px 5px 0.5px rgba(0, 0, 0, 0.25);
+  box-shadow: 0px 3px 7px 0.5px rgba(0, 0, 0, 0.25);
   margin: 0 0 2vh 0;
   padding: 0 2vw 0 2vw;
+  z-index: 1;
   .show {
     height: 100vh !important;
     transition: all 0.3s linear;
@@ -89,8 +94,33 @@ const Container = styled.header`
 
   .hide {
     display: none;
-    transition: all 0.3 linear;
+    transition: all 0.3s linear;
+    ${media.tablet`
+	    display: flex;
+	`};
   }
+  a {
+    text-decoration: none;
+    color: ${setColor.mainBlack};
+  }
+  a:hover {
+    color: ${setColor.secondaryColor};
+  }
+`;
+
+const Fixed = styled.div`
+  display: flex;
+  position: fixed;
+  top: 0;
+  flex-direction: row;
+  align-content: space-between;
+  justify-content: space-between;
+  width: 100vw;
+  padding: 1vh 2vw 1vh 2vw;
+  align-items: center;
+  ${media.tablet`
+  top: initial;
+  `};
 `;
 
 const Logo = styled.div``;
@@ -114,17 +144,18 @@ const StyledMenu = styled.ul`
   flex: 4;
   font-weight: 500;
   flex-direction: column;
-  height: 0;
   overflow: hidden;
   transition: all 0.3s linear;
   ${media.tablet`
 	flex-direction:row;
 	height: auto;
 	margin: 0 0 0 0;
+	justify-content: flex-end;
 	`};
 `;
 export const MenuItem = styled.li`
   padding: 1rem 2rem;
+  z-index: 2;
 `;
 
 export default Navbar;

@@ -12,12 +12,8 @@ it("should be accessible", async () => {
   expect(results).toHaveNoViolations();
 });
 
-test("Navbar is mobile", () => {});
-
 test("Navbar maps Links", () => {
   const { getByText } = render(<PureNavbar data={data} />);
-  // eslint-disable-next-line no-unused-expressions
   expect(getByText("Home")).toBeInTheDocument;
+  expect(getByText("Mediatoren")).toBeInTheDocument;
 });
-
-test("Navbar links can be clicked", () => {});
