@@ -2,7 +2,7 @@ import React from "react";
 import { graphql, useStaticQuery } from "gatsby";
 import styled from "styled-components";
 import BackgroundImage from "gatsby-background-image";
-import { setColor } from "../Style";
+import { setColor, media } from "../Style";
 
 export const PureHero = ({ data, children }) => {
   return (
@@ -39,9 +39,12 @@ const Container = styled.div`
     background-position: bottom center;
     background-repeat: repeat-y;
     background-size: cover;
-    height: 70vh;
+    height: 50vh;
     color: ${setColor.primaryColor};
   }
+  ${media.tablet`
+    height: 70vh;
+	`};
 `;
 
 export default Hero;
