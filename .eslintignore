@@ -3,3 +3,4 @@ test
 public
 coverage
 .cache
+__tests__/*
