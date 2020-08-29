@@ -77,7 +77,7 @@ const Container = styled.header`
   align-items: center;
   background-color: ${setColor.mainWhite};
   min-height: 8vh;
-  box-shadow: 5px 3px 5px 0.5px rgba(0, 0, 0, 0.25);
+  box-shadow: 0px 3px 7px 0.5px rgba(0, 0, 0, 0.25);
   margin: 0 0 2vh 0;
   padding: 0 2vw 0 2vw;
   .show {
@@ -87,7 +87,10 @@ const Container = styled.header`
 
   .hide {
     display: none;
-    transition: all 0.3 linear;
+    transition: all 0.3s linear;
+    ${media.tablet`
+	    display: flex;
+	`};
   }
 `;
 
