@@ -42,8 +42,10 @@ const Container = styled.div`
     height: 50vh;
     color: ${setColor.primaryColor};
   }
-  ${media.tablet`
+  ${media.portraitTablet`
+    .backgroundImage {
     height: 70vh;
+  }
 	`};
 `;
 

@@ -76,6 +76,9 @@ const Headline = styled.h3`
   font-size: ${setRem(25)};
   text-align: center;
   white-space: nowrap;
+  ${media.tablet`
+
+	`};
 `;
 
 const Description = styled.div`
@@ -83,6 +86,9 @@ const Description = styled.div`
     margin: 0 0 3vh 0;
     font-size: ${setRem(17)};
   }
+  ${media.tablet`
+
+	`};
 `;
 const Image = styled.div`
   width: 98%;
