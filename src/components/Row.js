@@ -4,16 +4,26 @@ import styled from "styled-components";
 import Img from "gatsby-image/index";
 import { setColor, setRem, media } from "../Style";
 
-export const PureRow = ({ data, picture, altText, heading, description }) => {
+export const PureRow = ({
+  data,
+  picture,
+  altText,
+  heading,
+  description,
+  setOrder,
+  setAlign,
+  setJustify,
+  setPadding,
+}) => {
   console.log(description);
   return (
     <Container>
-      <RowTitle>
+      <RowTitle align={setAlign} justify={setJustify}>
         <Headline>{heading}</Headline>
         <Line />
       </RowTitle>
       <RowBody>
-        <Image>
+        <Image order={setOrder}>
           <Img
             fluid={picture || data.file.childImageSharp.fluid}
             alt={altText || "Image demonstrating row content"}
@@ -23,7 +33,7 @@ export const PureRow = ({ data, picture, altText, heading, description }) => {
             }}
           />
         </Image>
-        <Description>
+        <Description align={setAlign} padding={setPadding}>
           {description.map(item => {
             return <p>{item}</p>;
           })}
@@ -81,8 +91,10 @@ const RowTitle = styled.div`
   display: flex;
   flex-direction: column;
   min-width: 30vw;
-  align-content: flex-start;
-  justify-content: flex-start;
+  align-content: flex-end;
+  alignt-itesm: flex-end;
+  justify-content: ${props => props.justify || "flex-end"};
+  text-align: ${props => props.align};
 
 	`};
 `;
@@ -93,7 +105,8 @@ const Description = styled.div`
   }
   ${media.tablet`
   margin: 0;
-  padding: 0 0 0 5vw;
+  padding: ${props => props.padding};
+  text-align: ${props => props.align};
 	`};
 `;
 const Image = styled.div`
@@ -101,6 +114,7 @@ const Image = styled.div`
   ${media.tablet`
   display: inline;
   min-width: 30vw;
+  order: ${props => props.order};
   
 	`};
 `;
