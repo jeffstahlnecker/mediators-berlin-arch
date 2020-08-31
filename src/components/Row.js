@@ -4,47 +4,35 @@ import styled from "styled-components";
 import Img from "gatsby-image/index";
 import { setColor, setRem, media } from "../Style";
 
-export const PureRow = ({ data, picture, altText }) => {
+export const PureRow = ({ data, picture, altText, heading, description }) => {
+  console.log(description);
   return (
     <Container>
-      <div>
-        <Headline>Was ist Mediation?</Headline>
+      <RowTitle>
+        <Headline>{heading}</Headline>
         <Line />
-      </div>
-      <Image>
-        <Img
-          fluid={picture || data.file.childImageSharp.fluid}
-          alt={altText || "Image demonstrating row content"}
-          imgStyle={{
-            objectFit: "none",
-            objectPosition: "50% 50%",
-          }}
-        />
-      </Image>
-      <Description>
-        <p>
-          Die Mediation ist eine Methode zur Vermittlung in Konfliktfällen, die
-          der gemeinsamen und konstruktiven Lösungsfindung dient. Sie ist ein
-          vertrauliches und strukturiertes Verfahren, in dem die beteiligten
-          Parteien (Mediant*innen) freiwillig, eigenverantwortlich und
-          wertschätzend eine einvernehmliche Beilegung ihres Konflikts
-          anstreben.
-        </p>
-        <p>
-          Der*die Mediator*in unterstützt die Mediant*innen hierbei und leitet
-          die Gespräche als ergebnisoffenen Prozess. Er*sIe stellt einen
-          sicheren und schützenden Rahmen her, in dem die Mediant*innen sich
-          offen, ehrlich und kooperativ begegnen können. Der*die Mediator*in ist
-          allparteilich, steht also auf der Seite aller Beteiligten. Er*sie
-          unterstützt die Mediant*innen bei der Erarbeitung von Lösungsoptionen
-          und Vereinbarungen, so dass für alle Parteien eine win-win Situation
-          entstehen kann.
-        </p>
-      </Description>
+      </RowTitle>
+      <RowBody>
+        <Image>
+          <Img
+            fluid={picture || data.file.childImageSharp.fluid}
+            alt={altText || "Image demonstrating row content"}
+            imgStyle={{
+              objectFit: "none",
+              objectPosition: "50% 50%",
+            }}
+          />
+        </Image>
+        <Description>
+          {description.map(item => {
+            return <p>{item}</p>;
+          })}
+        </Description>
+      </RowBody>
     </Container>
   );
 };
-export const Row = () => {
+export const Row = props => {
   const data = useStaticQuery(graphql`
     query {
       file(relativePath: { eq: "chance.jpg" }) {
@@ -56,7 +44,7 @@ export const Row = () => {
       }
     }
   `);
-  return <PureRow data={data} />;
+  return <PureRow {...props} data={data} />;
 };
 
 const Container = styled.div`
@@ -66,8 +54,13 @@ const Container = styled.div`
   align-items: center;
   padding: 10vh 10vw 0 10vw;
   ${media.tablet`
-	flex-direction:row;
+  display: block;
 	`};
+`;
+
+const RowBody = styled.div`
+  display: flex;
+  flex-direction: row;
 `;
 
 const Headline = styled.h3`
@@ -77,22 +70,39 @@ const Headline = styled.h3`
   text-align: center;
   white-space: nowrap;
   ${media.tablet`
+  text-align: left;
+  justify-content: flex-start;
+  align-content: flex-start;
+  align-items: flex-start;
+	`};
+`;
+const RowTitle = styled.div`
+  ${media.tablet`
+  display: flex;
+  flex-direction: column;
+  min-width: 30vw;
+  align-content: flex-start;
+  justify-content: flex-start;
 
 	`};
 `;
-
 const Description = styled.div`
   p {
     margin: 0 0 3vh 0;
     font-size: ${setRem(17)};
   }
   ${media.tablet`
-
+  margin: 0;
+  padding: 0 0 0 5vw;
 	`};
 `;
 const Image = styled.div`
-  width: 98%;
-  margin: 0 0 5vh 0;
+  display: none;
+  ${media.tablet`
+  display: inline;
+  min-width: 30vw;
+  
+	`};
 `;
 
 const Line = styled.hr`
@@ -101,7 +111,7 @@ const Line = styled.hr`
   border-top-width: 2px !important;
   color: ${setColor.primaryColor};
   width: 80%;
-  margin: 0 0 4vh 0;
+  margin: 0 0 5vh 0;
   border: 0;
   ${media.tablet`
 	width: 6vw;
