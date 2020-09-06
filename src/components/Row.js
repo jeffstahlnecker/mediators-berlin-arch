@@ -6,21 +6,29 @@ import { setColor, setRem, media } from "../Style";
 
 export const PureRow = ({ data, picture, altText }) => {
   return (
+    <div>
+      <StartSection>
+        <MediaContent>
+          <Headline>Was ist Mediation?</Headline>
+          <Line />
+        </MediaContent>
+
+      </StartSection>
     <Container>
-      <div>
-        <Headline>Was ist Mediation?</Headline>
-        <Line />
-      </div>
-      <Image>
-        <Img
-          fluid={picture || data.file.childImageSharp.fluid}
-          alt={altText || "Image demonstrating row content"}
-          imgStyle={{
-            objectFit: "none",
-            objectPosition: "50% 50%",
-          }}
-        />
-      </Image>
+      <MediaContent>
+
+        <Image>
+          <Img
+            fluid={picture || data.file.childImageSharp.fluid}
+            alt={altText || "Image demonstrating row content"}
+            imgStyle={{
+              objectFit: "none",
+              objectPosition: "50% 50%",
+            }}
+          />
+        </Image>
+      </MediaContent>
+
       <Description>
         <p>
           Die Mediation ist eine Methode zur Vermittlung in Konfliktfällen, die
@@ -42,6 +50,7 @@ export const PureRow = ({ data, picture, altText }) => {
         </p>
       </Description>
     </Container>
+    </div>
   );
 };
 export const Row = () => {
@@ -59,16 +68,45 @@ export const Row = () => {
   return <PureRow data={data} />;
 };
 
+
+const StartSection = styled.div`
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+justify-items: center;
+align-content: center;
+padding: 0 10vw 0 10vw;
+  ${media.tablet`
+	flex-direction:row;
+	align-items: flex-start;
+	justify-content: flex-start;
+	justify-items: flex-start;
+	align-content: flex-start;
+	`};
+`
+
 const Container = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  padding: 10vh 10vw 0 10vw;
+  padding: 0 10vw 0 10vw;
   ${media.tablet`
 	flex-direction:row;
 	`};
 `;
+
+const MediaContent = styled.div`
+display: flex;
+flex-direction: column;
+min-width: 100%;
+align-items: flex-start;
+  ${media.tablet`
+	min-width: 30vw;
+	margin: 0 5vw 0 0;
+	`};
+`
 
 const Headline = styled.h3`
   margin: 0 0 1vh 0;
@@ -94,11 +132,11 @@ const Line = styled.hr`
   border-top-style: solid !important;
   border-top-width: 2px !important;
   color: ${setColor.primaryColor};
-  width: 80%;
+  width: 100%;
   margin: 0 0 4vh 0;
   border: 0;
   ${media.tablet`
-	width: 6vw;
+	width: 8vw;
 	`};
 `;
 
