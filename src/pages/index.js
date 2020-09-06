@@ -1,13 +1,14 @@
 import React from "react";
 import Layout from "../components/Layout";
 import Hero from "../components/Hero";
-import Row from "../components/Row";
+import TextRow from "../components/TextRow";
+import CardRow from "../components/CardRow";
 
 export default function Home() {
   return (
     <Layout>
       <Hero />
-      <Row
+      <TextRow
         setPadding="0 0 0 5vw"
         heading="Was ist Mediation?"
         description={[
@@ -17,7 +18,7 @@ export default function Home() {
           "Eine Mediation umfasst weder psychologische, therapeutische noch juristische Beratung, noch stellt sie ein Coaching dar.",
         ]}
       />
-      <Row
+      <TextRow
         setOrder="6"
         setPadding="0 5vw 0 0"
         setAlign="right"
@@ -28,6 +29,7 @@ export default function Home() {
           "Wenn Sie Ihren aktuellen Konflikt als Möglichkeit zu persönlichem Wachstum und positiver Veränderung betrachten möchten, ist eine Mediation vermutlich der richtige Weg für Sie. Wenn Sie das Gespräch mit Ihrem Gegenüber wieder in Gang bringen und/oder einen tragfähigen Konsens finden möchten, stehen Ihnen die Mediator*innen in unserem Netzwerk professionell zur Seite.",
         ]}
       />
+      <CardRow />
     </Layout>
   );
 }

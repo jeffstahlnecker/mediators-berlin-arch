@@ -42,7 +42,7 @@ export const PureRow = ({
     </Container>
   );
 };
-export const Row = props => {
+export const TextRow = props => {
   const data = useStaticQuery(graphql`
     query {
       file(relativePath: { eq: "chance.jpg" }) {
@@ -132,4 +132,4 @@ const Line = styled.hr`
 	`};
 `;
 
-export default Row;
+export default TextRow;
